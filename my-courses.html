@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS - My Courses</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+    <div class="top-bar">
+        <img src="https://via.placeholder.com/30" alt="Google Play" style="height: 20px;">
+        <div class="user-info-top">
+            <span id="top-user-name">Student Portal</span>
+        </div>
+    </div>
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/150x50?text=KL+UNIVERSITY" alt="KL University">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="my-courses.html" class="active">My courses</a></li>
+                <li><a href="#" onclick="toggleHelpMenu(event)">Help</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="course-search" placeholder="Search courses">
+            <button onclick="searchCourses()">🔍</button>
+        </div>
+        <button id="logout-btn">Logout</button>
+    </header>
+
+    <div class="dashboard-container">
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h2>My Courses</h2>
+                <p style="color: #666; margin-bottom: 20px;">All your enrolled courses in one place</p>
+            </div>
+
+            <div class="course-filters">
+                <button class="filter-btn active" onclick="filterCourses('all')">All Courses</button>
+                <button class="filter-btn" onclick="filterCourses('in-progress')">In Progress</button>
+                <button class="filter-btn" onclick="filterCourses('completed')">Completed</button>
+                <button class="filter-btn" onclick="filterCourses('upcoming')">Upcoming</button>
+            </div>
+
+            <div class="course-grid" id="courses-container">
+                <div class="course-card" data-status="in-progress">
+                    <img src="https://via.placeholder.com/300x150/667eea/ffffff?text=AI+%26+Machine+Learning" alt="Course Image">
+                    <div class="course-info">
+                        <h3>Artificial Intelligence & Machine Learning</h3>
+                        <p>II YEAR - Fall 2025</p>
+                        <p class="course-instructor">👨‍🏫 Dr. Rajesh Kumar</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 62%;">62% complete</div>
+                        </div>
+                        <button class="course-btn" onclick="viewCourse('AI-ML')">View Course</button>
+                    </div>
+                </div>
+
+                <div class="course-card" data-status="in-progress">
+                    <img src="https://via.placeholder.com/300x150/764ba2/ffffff?text=Computer+Networks" alt="Course Image">
+                    <div class="course-info">
+                        <h3>Computer Networks</h3>
+                        <p>II YEAR - Fall 2025</p>
+                        <p class="course-instructor">👨‍🏫 Prof. Sanjay Patel</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%;">50% complete</div>
+                        </div>
+                        <button class="course-btn" onclick="viewCourse('Networks')">View Course</button>
+                    </div>
+                </div>
+
+                <div class="course-card" data-status="in-progress">
+                    <img src="https://via.placeholder.com/300x150/f093fb/ffffff?text=Web+Development" alt="Course Image">
+                    <div class="course-info">
+                        <h3>Front End Development Frameworks</h3>
+                        <p>II YEAR - Fall 2025</p>
+                        <p class="course-instructor">👩‍🏫 Dr. Priya Sharma</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%;">75% complete</div>
+                        </div>
+                        <button class="course-btn" onclick="viewCourse('WebDev')">View Course</button>
+                    </div>
+                </div>
+
+                <div class="course-card" data-status="in-progress">
+                    <img src="https://via.placeholder.com/300x150/f5576c/ffffff?text=Database+Management" alt="Course Image">
+                    <div class="course-info">
+                        <h3>Database Management Systems</h3>
+                        <p>II YEAR - Fall 2025</p>
+                        <p class="course-instructor">👨‍🏫 Prof. Amit Verma</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 45%;">45% complete</div>
+                        </div>
+                        <button class="course-btn" onclick="viewCourse('DBMS')">View Course</button>
+                    </div>
+                </div>
+
+                <div class="course-card" data-status="completed">
+                    <img src="https://via.placeholder.com/300x150/28a745/ffffff?text=Data+Structures" alt="Course Image">
+                    <div class="course-info">
+                        <h3>Data Structures & Algorithms</h3>
+                        <p>I YEAR - Spring 2025</p>
+                        <p class="course-instructor">👨‍🏫 Dr. Ramesh Gupta</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 100%;">100% complete</div>
+                        </div>
+                        <div class="completion-badge">✓ Completed</div>
+                        <button class="course-btn" onclick="viewCourse('DSA')">View Course</button>
+                    </div>
+                </div>
+
+                <div class="course-card" data-status="upcoming">
+                    <img src="https://via.placeholder.com/300x150/ffc107/ffffff?text=Cloud+Computing" alt="Course Image">
+                    <div class="course-info">
+                        <h3>Cloud Computing</h3>
+                        <p>III YEAR - Spring 2026</p>
+                        <p class="course-instructor">👩‍🏫 Dr. Neha Singh</p>
+                        <div class="upcoming-badge">📅 Starts Jan 2026</div>
+                        <button class="course-btn secondary" onclick="viewCourse('Cloud')">Course Info</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="dashboard-nav">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="dashboard.html">Site home</a></li>
+                <li><a href="profile.html">My Profile</a></li>
+                <li>
+                    <a href="my-courses.html">My courses</a>
+                    <ul>
+                        <li><a href="#" onclick="viewCourse('AI-ML')">AI & ML</a></li>
+                        <li><a href="#" onclick="viewCourse('Networks')">Computer Networks</a></li>
+                        <li><a href="#" onclick="viewCourse('WebDev')">Front End Dev</a></li>
+                        <li><a href="#" onclick="viewCourse('DBMS')">Database Systems</a></li>
+                    </ul>
+                </li>
+                <li><a href="grades.html">Grades</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+    <div class="top-bar">
+        <img src="https://via.placeholder.com/30" alt="Google Play" style="height: 20px;">
+        <div class="user-info-top">
+            <span id="top-user-name">Student Portal</span>
+        </div>
+    </div>
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/150x50?text=KL+UNIVERSITY" alt="KL University">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html" class="active">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="my-courses.html">My courses</a></li>
+                <li><a href="#" onclick="toggleHelpMenu(event)">Help</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="dashboard-search" placeholder="Search">
+            <button onclick="performSearch()">🔍</button>
+        </div>
+        <button id="logout-btn">Logout</button>
+    </header>
+
+    <div class="dashboard-container">
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h2>Dashboard</h2>
+                <div class="tabs">
+                    <button class="tab-link active" onclick="openTab(event, 'course-overview')">Course overview</button>
+                    <button class="tab-link" onclick="openTab(event, 'timeline')">Timeline</button>
+                </div>
+            </div>
+
+            <div id="course-overview" class="tab-content" style="display: block;">
+                            <div class="course-controls">
+                <button class="active" onclick="filterView('all')">All</button>
+                <input type="text" id="course-filter" placeholder="Search courses" onkeyup="filterCourseCards()">
+                <button onclick="sortCourses()">Sort by course name</button>
+                <button onclick="toggleView()">Card</button>
+            </div>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <img src="https://via.placeholder.com/300x150/cccccc/808080?text=AI+%26+ML" alt="Course Image">
+                        <div class="course-info">
+                            <h3>ARTIFICIAL INTELLIGENCE & MACHINE LEARNING ...</h3>
+                            <p>II YEAR</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 62%;">62% complete</div>
+                            </div>
+                            <button class="course-btn" onclick="viewCourse('AI-ML')">View Course</button>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <img src="https://via.placeholder.com/300x150/eeeeee/808080?text=CODING" alt="Course Image">
+                        <div class="course-info">
+                            <h3>CAMPUS RECRUITMENT: CODING SKILLS TRAINING - ...</h3>
+                            <p>II YEAR</p>
+                            <button class="course-btn" onclick="viewCourse('Coding')">View Course</button>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <img src="https://via.placeholder.com/300x150/cccccc/808080?text=NETWORKS" alt="Course Image">
+                        <div class="course-info">
+                            <h3>COMPUTER NETWORKS 2025-2026 ODD SEMESTER</h3>
+                            <p>II YEAR</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 50%;">50% complete</div>
+                            </div>
+                            <button class="course-btn" onclick="viewCourse('Networks')">View Course</button>
+                        </div>
+                    </div>
+                    <!-- Add more course cards as needed -->
+                </div>
+            </div>
+
+            <div id="timeline" class="tab-content">
+                <div class="timeline-item">
+                    <p class="timeline-date">Friday, 24 October 2025</p>
+                    <div class="timeline-event">
+                        <p>COMPUTER NETWORKS 2025-2026 ODD SEMESTER</p>
+                        <p><strong>ASSIGNMENT_CO3 IS DUE</strong></p>
+                        <a href="#" onclick="openUploadModal('ASSIGNMENT_CO3'); return false;">ADD SUBMISSION</a>
+                        <span class="timeline-time">17:30</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-date">Monday, 3 November 2025</p>
+                    <div class="timeline-event">
+                        <p>FRONT END DEVELOPMENT FRAMEWORKS 2025-2026 ODD SEMESTER</p>
+                        <p><strong>CASE STUDY 1 IS DUE</strong></p>
+                        <a href="#" onclick="openUploadModal('CASE STUDY 1'); return false;">ADD SUBMISSION</a>
+                        <span class="timeline-time">17:30</span>
+                    </div>
+                </div>
+                <!-- Add more timeline items as needed -->
+            </div>
+        </main>
+
+        <aside class="dashboard-nav">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="dashboard.html">Site home</a></li>
+                <li><a href="profile.html">My Profile</a></li>
+                <li>
+                    <a href="my-courses.html">My courses</a>
+                    <ul>
+                        <li><a href="#" onclick="viewCourse('ICPC2024')">ICPC2024</a></li>
+                        <li><a href="#" onclick="viewCourse('YOGA')">YOGA-24SP2116</a></li>
+                        <li><a href="#" onclick="viewCourse('Networks')">Computer Networks</a></li>
+                        <li><a href="#" onclick="viewCourse('AI-ML')">AI & Machine Learning</a></li>
+                    </ul>
+                </li>
+                <li><a href="grades.html">Grades</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- File Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadModal()">&times;</span>
+            <h2>Submit Assignment</h2>
+            <p id="assignment-name"></p>
+            <form id="upload-form">
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-icon">📁</div>
+                    <p>Drag & Drop your file here</p>
+                    <p>or</p>
+                    <label for="file-input" class="file-select-btn">Choose File</label>
+                    <input type="file" id="file-input" accept=".pdf,.doc,.docx,.zip" multiple hidden>
+                </div>
+                <div id="file-list" class="file-list"></div>
+                <textarea id="submission-comments" placeholder="Add comments (optional)" rows="4"></textarea>
+                <div class="modal-buttons">
+                    <button type="submit" class="submit-btn">Submit Assignment</button>
+                    <button type="button" class="cancel-btn" onclick="closeUploadModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
